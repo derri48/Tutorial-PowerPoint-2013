@@ -1,0 +1,178 @@
+- var pageTitle = 'Dasar Kontrol Versi'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Dasar Kontrol Versi
+		p Teknik Kolaborasi TI
+
+	section
+		h2 Bekerja dengan Kontrol Versi (Git)
+		img.big(src="images/GitFlow.png")
+
+	section
+		h2.bullet Wait, WHAT?!
+		ul
+			li Repository?
+			li Create?
+			li Clone?
+			li Commit?
+			li Pull?
+			li Push?
+
+	section
+		h2 Repository
+		img.big(src="images/repository-building.jpg")
+
+	section
+		h2 Repository
+		blockquote.
+			Tempat penyimpanan <strong>seluruh</strong> data
+			yang akan diatur oleh Kontrol Versi. Seluruh file
+			maupun struktur direktori yang akan dikontrol 
+			disimpan di sini.
+
+	section
+		h2.bullet Repository
+		hr
+		ul
+			li Selain menyimpan struktur data, juga menyimpan <strong>sejarah</strong> data.
+			li Konsekuensi: <strong>tidak ada data yang benar-benar dihapus</strong>.
+			li Penghapusan malah akan <strong>memperbesar</strong> ukuran repository. Kenapa?
+			li Pada Kontrol Versi terpusat, hanya terdapat 1 repository yang digunakan semua orang.
+			li Pada Kontrol Versi terdistribusi, bisa saja setiap orang memiliki repository masing-masing.
+
+	section
+		h2 Repository (Kontrol Versi Terpusat)
+		img.big(src="images/RepositoryCVCS.png")
+
+	section
+		h2 Repository (Kontrol Versi Terdistribusi)
+		img.big(src="images/RepositoryDCVS.png")
+
+	section
+		h2 Create (Init)
+		blockquote.
+			Perintah untuk membuat repository baru. Biasanya hanya
+			dilakukan sekali saja, di awal mulai proyek.
+
+	section
+		h2 Clone
+		blockquote.
+			Perintah untuk mengambil kopi repository lain. Clone 
+			dapat dilakukan terhadap repository manapun, selama
+			alamat repository diberikan dengan benar.
+
+	section
+		h2 Commit
+		blockquote.
+			Mencatat dan menyimpan perubahan data yang ada ke dalam repository.
+
+	section
+		h2.bullet Commit
+		hr
+		ul
+			li Melakukan modifikasi terhadap repository secara langsung.
+			li Perintah commit bersifat <strong>atomik</strong> untuk memastikan integritas repository.
+			li Biasanya pengguna harus memberikan catatan (log) perubahan.
+			li Catatan commit disimpan dalam sejarah.
+
+	section
+		h2 Pull / Update
+		blockquote.
+			Mengambil versi data terbaru dari repository luar (remote)
+			ke repository lokal. Dengan kata lain: mengambil
+			versi data terbaru dari server.
+
+	section
+		h2.bullet Pull / Update
+		hr
+		ul
+			li Terutama digunakan untuk sinkronasi dua repository
+			li Lokal mengambil perubahan terbaru dari remote
+			li Remote biasanya merupakan repository awal yang di-clone oleh lokal
+			li Jika local dan remote sudah tidak sama (sama-sama berubah)?
+
+	section
+		h2 Branch (Cabang)
+		blockquote.
+			Branch merupakan operasi yang dilakukan ketika ingin
+			mencoba hal-hal yang berbeda untuk diaplikasikan terhadap
+			data yang sama.
+
+	section
+		h2 Branch
+		img.big(src="images/KorraBranch.png")
+
+	section
+		h2.bullet Branch
+		hr
+		ul
+			li Satu repository bisa memiliki banyak branch
+			li Ketika melakukan clone, secara tidak langsung kita juga membuat branch
+			li Secara teknis, hasil clone bukanlah branch, secara konsep <strong>mirip</strong>
+			li Penggabungan branch dilakukan dengan merging (?)
+
+	section
+		h2.bullet Kegunaan Branch
+		hr
+		ul
+			li Eksperimen (kalau tidak cocok tinggal buang branch-nya)
+			li Menjaga agar kode utama bersih ketika bekerja
+			li Detailnya akan dijelaskan pada topik 5
+
+	section
+		h2 Merge
+		blockquote.
+			Operasi penggabungan dua cabang secara otomatis (jika bisa).
+			Ketika operasi tidak dapat dijalankan secara otomatis, maka kita harus
+			melakukan merge secara manual.
+
+	section
+		h2 Merge (secara Manual)
+		img(src="images/MergeTool.png")
+
+	section
+		h2 Push
+		blockquote.
+			Mengirimkan perubahan pada repository lokal ke
+			repository remote. Dengan kata lain: mengirimkan
+			data terbaru ke repository remote.
+
+	section
+		h2 Kembali ke gambar awal...
+		img.big(src="images/GitFlow.png")
+
+	section
+		h2 Jika baru memulai proyek...
+		img.big(src="images/GitFlowNewProject.png")
+
+	section
+		h2 Jika ingin melanjutkan pekerjaan...
+		img.big(src="images/GitFlowContinueWork.png")
+		p PS: 4 dan 5 opsional (jika bekerja pada repo utama)
+
+	section
+		h2 Jika baru bergabung dalam tim...
+		img.big(src="images/GitFlowNewMember.png")
+
+	section
+		h2 Atau bisa juga...
+		img.big(src="images/GitFlowAlternate.png")
+
+	section
+		h2.bullet Tentang Alur Kerja
+		hr
+		ul
+			li Yang dijelaskan hanyalah salah satu (dua) alur kerja
+			li Alur kerja setiap tim berbeda!
+			li Gunakan yang paling cocok untuk tim anda.
+
+	section
+		h2 Pertanyaan?
+
+include presentation-footer
+include main-footer

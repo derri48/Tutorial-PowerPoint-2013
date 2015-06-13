@@ -1,0 +1,302 @@
+- var pageTitle = 'Log dan History'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Log dan History
+		h2 Melihat Hasil Pekerjaan Masa Lalu
+		p Teknik Kolaborasi TI
+
+	section
+		h2.bullet Persiapan
+		hr
+		ul
+			li Untuk bisa bermain dengan sejarah perlu repository besar
+			li Jalankan perintah:
+			li <code class="inline language-bash">git clone https://github.com/quilljs/quill.git</code>
+			li Penjelasan perintah di atas akan dibahas minggu depan
+
+	section
+		h2.bullet Sejarah Kode
+		hr
+		ul
+			li Untuk melihat data pencatatan tiap *commit* yang ada.
+			li Perintah utama: <code class="inline language-bash">git log</code>
+
+	section
+		h2 Contoh Penggunaan Git Log
+		code.language-bash
+			pre.
+				$ git log
+				commit 7dab74f3ff21dcbb107c8be34db1253eaca41ca1
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 22:31:46 2014 -0700
+
+					use standard account for pull requests
+
+				commit b5256f7982a60b5359e49fc328fcce7603f85070
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 09:00:04 2014 -0700
+
+					Update instructions
+
+				commit a6e1e9768ac8c4a8e24d0652460e9f9f25f81af8
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 08:49:31 2014 -0700
+
+					remove warning
+				...
+
+	section
+		h2 Melihat Sebanyak n Commit yang Lalu Saja
+		code.language-bash
+			pre.
+				$ git log -n
+		p dengan n adalah jumlah log yang ingin dilihat
+
+	section
+		h2 Contoh
+		code.language-bash
+			pre.
+				$ git log -2
+				commit 7dab74f3ff21dcbb107c8be34db1253eaca41ca1
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 22:31:46 2014 -0700
+
+					use standard account for pull requests
+
+				commit b5256f7982a60b5359e49fc328fcce7603f85070
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 09:00:04 2014 -0700
+
+					Update instructions
+				...
+
+	section
+		h2 Kombinasi Perintah Flag
+		p.
+			Semua flag yang ada bisa dikombinasikan. Contoh:
+			melihat perbedaan antar <i>commit</i> dari 2 <i>commit</i>
+			terakhir:
+		code.language-bash
+			pre.
+				$ git log -2 -p
+		p (urutan tidak penting)
+
+	section
+		h2 Melihat Perbedaan yang Ada Antar Commit
+		code.language-bash
+			pre.
+				$ git log -p
+				commit 7dab74f3ff21dcbb107c8be34db1253eaca41ca1
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 22:31:46 2014 -0700
+
+					use standard account for pull requests
+
+				diff --git a/test/karma.js b/test/karma.js
+				index e722991..a2259c8 100644
+				--- a/test/karma.js
+				+++ b/test/karma.js
+				@@ -87,7 +87,7 @@ module.exports = function(config) {
+					if (process.env.TRAVIS) {
+						config.transports = ['xhr-polling'];
+						config.sauceLabs.build = 'travis-' + process.env.TRAVIS_BUILD_ID;
+				-    if (process.env.TRAVIS_BRANCH == 'master') {
+				+    if (process.env.TRAVIS_BRANCH == 'master' && !process.env.TRAVIS_PULL_REQUE
+						config.sauceLabs.username = 'quill-master';
+						config.sauceLabs.accessKey = '685c8996-7b70-4543-8167-58f8e88a8484';
+					}
+				...
+
+	section
+		h2.bullet Perbedaan Antar Commit
+		hr
+		ul
+			li Dikenal dengan istilah "diff"
+			li Membandingkan perbedaan file <b>per baris</b>
+			li Berguna jika repository berisi kode program
+
+	section
+		h2 Perbedaan Antar Kata dalam Commit 
+		code.language-bash
+			pre.
+				$ git log -p --word-diff
+				commit 7dab74f3ff21dcbb107c8be34db1253eaca41ca1
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 22:31:46 2014 -0700
+
+					use standard account for pull requests
+
+				diff --git a/test/karma.js b/test/karma.js
+				index e722991..a2259c8 100644
+				--- a/test/karma.js
+				+++ b/test/karma.js
+				@@ -87,7 +87,7 @@ module.exports = function(config) {
+					if (process.env.TRAVIS) {
+					config.transports = ['xhr-polling'];
+					config.sauceLabs.build = 'travis-' + process.env.TRAVIS_BUILD_ID;
+					if (process.env.TRAVIS_BRANCH == [-'master')-]{+'master' && !process.env.TRA
+						config.sauceLabs.username = 'quill-master';
+						config.sauceLabs.accessKey = '685c8996-7b70-4543-8167-58f8e88a8484';
+					}
+				...
+
+	section
+		h2.bullet Perbedaan Antar Kata dalam Commit
+		hr
+		ul
+			li Dikenal dengan istilah "word diff"
+			li Membandingkan perbedaan isi file <b>per kata</b>
+			li Berguna jika repository berisi tulisan (mis: novel, skripsi)
+			li Kata yang bertambah ditampilkan dengan simbol <code class="inline language-bash">{+ +}</code>
+			li Kata yang berkurang ditampilkan dengan simbol <code class="inline language-bash">[- -]</code>
+
+	section
+		h2.bullet Statistik Commit
+		hr
+		ul
+			li Melihat statistik umum dari sebuah commit
+			li Data yang dicatat: file yang berubah, berapa banyak perubahan
+			li Perintah: <code class="language-bash">git log --stat</code>
+
+	section
+		h2 Statsitik Commit
+		code.language-bash
+			pre.
+				$ git log --stat
+				commit 7dab74f3ff21dcbb107c8be34db1253eaca41ca1
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Thu May 8 22:31:46 2014 -0700
+
+					use standard account for pull requests
+
+				test/karma.js | 2 +-
+				1 file changed, 1 insertion(+), 1 deletion(-)
+				...
+
+	section
+		h2.bullet Mengganti Tampilan Commit
+		hr
+		ul
+			li Memiliki delapan jenis format: 'oneline', 'short', 'medium', 'full', 'fuller', 'email', 'raw', dan 'format'
+			li Masing-masing format memiliki kegunaan tersendiri
+			li Perintah: <code class="language-bash">git log --pretty=&lt;format&gt;</code>
+
+	section
+		h2 Mengganti Tampilan Commit
+		code.language-bash
+			pre.
+				$ git log --pretty=oneline
+				7dab74f3ff21dcbb107c8be34db1253eaca41ca1 use standard account for pull requests
+				b5256f7982a60b5359e49fc328fcce7603f85070 Update instructions
+				a6e1e9768ac8c4a8e24d0652460e9f9f25f81af8 remove warning
+				75c8f63eba4924c5545df89e4e82edaa6be97bd6 Merge branch 'develop'
+				7659d6dcc7d28c67b06efb59d5c5767a9880d624 bump version
+				b08fcbaa63b8e30989de1659710042eb9a9cc5fb fix multicursor placement on first char
+				...
+
+	section
+		h2 Mengganti Tampilan Commit
+		code.language-bash
+			pre.
+				$ git log --pretty=fuller
+				commit 7dab74f3ff21dcbb107c8be34db1253eaca41ca1
+				Author:     Jason Chen <jhchen7@gmail.com>
+				AuthorDate: Thu May 8 22:31:46 2014 -0700
+				Commit:     Jason Chen <jhchen7@gmail.com>
+				CommitDate: Thu May 8 22:31:46 2014 -0700
+
+					use standard account for pull requests
+
+				...
+
+	section
+		h2.bullet Mengganti Tampilan Commit (--pretty=format)
+		ul
+			li Format ditentukan oleh pengguna
+			li Pengguna menspesifikasikan apa yang mau ditampilkan melalui kode format
+		code.language-bash
+			pre.
+				$ git log --pretty=format:"%h - %an (%ar): %s"
+				7dab74f - Jason Chen (4 days ago): use standard account for pull requests
+				b5256f7 - Jason Chen (5 days ago): Update instructions
+				a6e1e97 - Jason Chen (5 days ago): remove warning
+				75c8f63 - Jason Chen (5 days ago): Merge branch 'develop'
+				7659d6d - Jason Chen (5 days ago): bump version
+				...
+
+	section
+		h2 Mengganti Tampilan Commit (--pretty=format)
+		img(src="images/CommitLogFormat.png")
+
+	section
+		h2 Menampilkan Grafik Commit (terutama untuk percabangan)
+		code.language-bash
+			pre.
+				$ git log --pretty=format:"%h - %s" --graph
+				* 7dab74f - use standard account for pull requests
+				* b5256f7 - Update instructions
+				* a6e1e97 - remove warning
+				*   75c8f63 - Merge branch 'develop'
+				|\
+				| * 7659d6d - bump version
+				| * b08fcba - fix multicursor placement on first character of right align text
+				| * 5e60376 - fix tests
+				| * e5259e0 - tweak styles
+				| * ce598e1 - fix styles for align in snow
+				...
+
+	section
+		h2.bullet Filter Keluaran Commit
+		hr
+		ul
+			li Filter berdasarkan waktu: <code class="inline language-bash">--since, --until, --after, --before</code>
+			li Filter berdasarkan nama: <code class="inline language-bash">--committer, --author</code>
+			li Filter berdasarkan kata kunci: <code class="inline language-bash">--grep</code>
+
+	section
+		h2 Filter Berdasarkan Waktu
+		code.language-bash
+			pre.
+				$ git log --until="2014-04-30" -2
+				commit 5f0384a5834a5e0b42e8b0fce4ca2c3e8741681d
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Tue Apr 29 23:40:32 2014 -0700
+
+					fix image insertion
+
+				commit 38e8b2b2edb1c3d29ec2300c70ec1281f33fffc5
+				Author: Jason Chen <jhchen7@gmail.com>
+				Date:   Tue Apr 29 23:12:23 2014 -0700
+
+					implement image tooltip
+
+	section
+		h2 Filter Berdasarkan Nama
+		code.language-bash
+			pre.
+				$ git log --format="%h - %s" --committer=byronm -3
+				9fb830d - Add messages to failed tests in undo/redo suite.
+				e207715 - Bump selenium-webdriver to handle Firefox 24.
+				d033324 - Use rgb for consistency.
+
+	section
+		h2 Filter Berdasarkan Kata Kunci
+		code.language-bash
+			pre.
+				$ git log --format="%h - %s" --grep="Firefox"
+				e207715 - Bump selenium-webdriver to handle Firefox 24.
+				418e0d5 - Test deleting newline and then inserting.
+				791b56d - Remove hyperlink from insert tests.
+				4174d98 - Added another cursor test.
+				61b4dfe - Focus the editor in webdriver initialization.
+				cb6ddec - Explicitly turn on native events for Firefox.
+				d3ffeec - ownerDocument is null if element is document in Firefox
+				524e06a - Added hack to prevent Firefox from adding undesired newlines.
+
+include presentation-footer
+include main-footer

@@ -1,0 +1,13 @@
+git log
+git log -2
+git log -2 -p
+git log -p
+git log -p --word-diff
+git log --stat
+git log --pretty=oneline
+git log --pretty=fuller
+git log --pretty=format:"%h - %an (%ar): %s"
+git log --pretty=format:"%h - %s" --graph
+git log --until="2014-04-30" -2
+git log --format="%h - %s" --committer=byronm -3
+git log --format="%h - %s" --grep="Firefox"

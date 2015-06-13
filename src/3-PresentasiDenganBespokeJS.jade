@@ -1,0 +1,180 @@
+- var pageTitle = 'Presentasi dengan Bespoke.JS'
+
+include presentation-header
+
+include menu
+
+article#presentation
+
+	section
+		h1 Presentasi dengan Bespoke.JS
+		p Teknologi Kolaborasi Pengembangan Perangkat Lunak
+
+	section
+		h2.bullet Tujuan Pembelajaran
+		hr
+		ul
+			li Persiapan tugas proyek
+			li Membuat presentasi yang baik
+			li Sampel pengenalan teknologi kolaborasi dan penggunaannya
+
+	section
+		h2.bullet Perangkat Lunak Prasyarat
+		hr
+		ul
+			li <a href="http://nodejs.org/">Node.js</a>
+
+	section
+		h2 Pengenalan Singkat Node.js
+		blockquote.
+			Node.js merupakan sebuah <strong>platform</strong> yang dibangun di atas
+			<a href="http://code.google.com/p/v8/">lingkungan eksekusi Javascript milik Chrome</a>
+			untuk memudahkan dalam pengembangan aplikasi jaringan yang cepat dan berskala besar.
+			<small>Website resmi Node.js</small>
+
+	section
+		h2.bullet Node.js...
+		hr
+		ul
+			li ... dirancang untuk menjalankan aplikasi javascript
+			li ... bukan hanya aplikasi server, tetapi juga aplikasi client
+			li ... berjalan di Windows, OS X, Linux, Solaris, *BSD, dll
+
+	section
+		h2.bullet Installasi Node.js
+		hr
+		ul
+			li Unduh installer Node.js di <a href="https://github.com/markdalgleish/bespoke.js">website resminya.</a>
+			li Pilih sesuai dengan yang OS kalian. 
+			li Install di komputer.
+		img(src="images/NodeJsWebsite.png")
+
+	section
+		h2.bullet npm (node package manager)
+		hr
+		ul
+			li perangkat lunak manajemen paket untuk Node.js
+			li memudahkan dalam <strong>menerbitkan</strong> dan menggunakan paket
+			li mengurangi ketergantungan (<em>dependency</em>) dan konflik antar versi paket
+			li mudah digunakan dan sederhana
+			li dipaketkan dengan Node.js
+
+	section 
+		h2 cara penggunaan npm
+		code.language-bash
+			pre.
+				npm install [nama-paket]
+		p instalasi semua paket Node.js dilakukan seperti ini
+
+	section
+		h2 Instalasi Grunt.js
+		code.language-bash
+			pre.
+				npm install -g grunt-cli
+
+	section
+		h2.bullet Bespoke.JS
+		hr
+		ul
+			li pustaka untuk membuat presentasi dengan teknologi web
+			li sangat kecil dan sederhana
+			li modular dan mudah digunakan
+
+	section
+		h2 Bespoke.JS
+		p.
+			Karena menggunakan teknologi web, kita harus menguasai 
+			HTML/CSS/JS terlebih dahulu (duh).
+
+	section
+		h2 Demo Penggunaan Bespoke.JS
+
+	section
+		h2.bullet Membuat Presentasi Bespoke.JS
+		hr
+		ol
+			li Ambil kode <a href="https://raw.github.com/markdalgleish/bespoke.js/master/dist/bespoke.min.js">Bespoke.JS</a>
+			li Buat file HTML, masukkan kode Bespoke.JS
+			li Buat file javascript yang menghubungkan Bespoke.JS dengan HTML
+			li Buat file CSS, masukkan kelas-kelas Bespoke.JS
+			li Buat slide sesuai dengan aturan HTML dan CSS Bespoke.JS
+
+	section
+		h2 Ribet :(
+		p bisa lebih sederhana dengan generator-bespoke
+
+	section
+		h2 generator-bespoke
+		code.language-bash
+			pre.
+				npm install -g generator-bespoke
+				mkdir presentasi
+				cd presentasi
+				npm install -g yo
+				yo bespoke
+
+	section
+		h2 generator-bespoke (run)
+		code.language-bash
+			pre.
+				grunt server # akses di localhost:8000
+
+	section
+		h2.bullet Jade
+		hr
+		ul
+			li <em>Template Engine</em> untuk Node.js
+			li menyederhanakan penulisan HTML
+			li <a href="http://jade-lang.com/">coba langsung</a>
+
+	section
+		h2.bullet Jade Example
+		img.big(src="images/jade.png")
+
+	
+	section
+		h2.bullet Stylus Example
+		h3 Normal CSS
+		code.language-css
+			pre.
+				body {
+					font: 12px Helvetica, Arial, sans-serif;
+				}
+
+				a.button {
+					-webkit-border-radius: 5px;
+					-moz-border-radius: 5px;
+					border-radius: 5px;
+				}
+	section
+
+		h2.bullet Stylus Example 2
+		h3 Stylus
+		code.language-css
+			pre.
+				border-radius()
+					-webkit-border-radius arguments
+					-moz-border-radius arguments
+					border-radius arguments
+
+				body
+					font 12px Helvetica, Arial, sans-serif
+
+				a.button
+					border-radius 5px
+
+	section
+		h2 Demo Penggunaan Bespoke.JS
+		p (dengan generator-bespoke)
+
+	section
+		h2.bullet Membuat Presentasi Bespoke.JS 
+		h3 (dengan generator-bespoke)
+		hr
+		ol
+			li instalasi dan jalankan
+			li tambahkan slide dengan kode jade (<code class="inline">index.jade</code>)
+			li ubah tampilan dengan kode stylus (<code class="inline">styles/main.sty</code>)
+
+include presentation-footer
+include main-footer

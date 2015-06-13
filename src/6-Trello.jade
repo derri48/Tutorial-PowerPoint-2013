@@ -1,0 +1,232 @@
+- var pageTitle = 'User Stories'
+
+include presentation-header
+
+include menu
+
+article#presentation
+
+	section
+		h1 Trello &amp; Bug Tracking
+		p Teknologi Kolaborasi Pengembangan Perangkat Lunak
+
+	section
+		h2.bullet Tujuan Pembelajaran
+		hr
+		ul
+			li Mahasiswa memahami penggunaan Trello dalam Scrum dan User Story.
+			li Mahasiswa memahami penggunaan Bug Reporting.
+
+	section
+		h1 Trello
+
+	section
+		h2.bullet Apa itu Trello?
+		hr
+		ul
+			li Trello merupakan aplikasi manajemen proyek yang dikembangkan oleh Fog Creek Software
+			li Trello pada dasarnya menggunakan sebuah paradigma manajemen proyek yang bernama Kanban.
+			li Trello gratis digunakan selama 
+	
+	section
+		h2.bullet Trello
+		img.big(src="images/trello.png")
+		
+	section
+		h2.bullet Bagaimana cara kerja Trello?
+		hr
+		ul
+			li Dalam Trello proyek direpresentasikan sebagai "board".
+			li Setiap "board" mengandung "list".
+			li Setiap "list" mengandung "card".
+			li "Card" merepresentasikan item kita, bisa berupa user story dan sebagainya.
+			li Kita memindahkan "card" dari satu "list" ke "list" lain dalam satu "board".
+
+	section
+		h2.bullet Board dalam Trello
+		img.big(src="images/trelloBoard.png")
+
+	section
+		h2.bullet List dan Card dalam Trello
+		img.big(src="images/trelloList.png")
+
+	section
+		h2.bullet Back of the Card
+		p Setiap "card" di Trello bisa memuat banyak informasi berharga. 
+		img.big(src="images/backOfCardTrello.png")
+
+	section
+		h2.bullet Detil dari Card
+		hr
+		ul
+			li Members -- Bisa digunakan untuk menset anggota development team yang mengerjakan User Story tersebut.
+			li Labels -- Bisa digunakan untuk memberi tanda kepada card.
+			li Checklist -- Bisa digunakan untuk me-list-kan pengujian yang harus dilakukan sebelum card dipindahkan ke done.
+			li Due Date -- Bisa digunakan untuk menset limit waktu pengerjaan user story.
+			li Attachment -- Bisa digunakan untuk informasi penting lainnya.
+
+	section
+		h2.bullet Trello dan SCRUM
+		p Ada beberapa cara memanfaatkan Trello sebagai perangkat SCRUM
+		hr
+		ol
+			li Menggunakan satu board (untuk proyek kecil)
+			li Menggunakan beberapa board (untuk proyek besar) 
+		
+	section 
+		h2.bullet Trello Satu Board
+		hr
+		ul
+			li Backlog, dan Sprint Backlog masing-masing dibuat dalam satu list di board yang sama.
+			li Terdapat dua list tambahan yang "On Progress" dan "Done"
+			li Setiap Backlog dan Sprint Backlog memuat User Story.
+
+	section
+		h2.bullet Trello 1 board
+		img.big(src="images/trelloProgress.png")
+	
+	section
+		h2.bullet Trello Satu Board (lanjutan)
+		hr
+		ul
+			li Di awal Sprint Planning, User Story dalam Backlog dipindahkan ke Sprint Backlog.
+			li Sprint Backlog memuat semua user story yang harus diselesaikan.
+			li Setiap kali anggota development team akan mengerjakan satu card, card tersebut dipindahkan ke "In Progress" list.
+			li Jika sudah selesai dipindahkan ke "Done" list.
+			li Jika sprint sudah selesai maka di-archive dan buat card baru.
+
+	section
+		h2.bullet Trello Beberapa Board
+		p Jika Proyek besar atau tim banyak.
+		p Dengan Satu board, bisa terlalu ribet.
+		p Kurang detil di setiap board
+	
+	section
+		h2.bullet Trello Beberapa Board (Lanjutan)
+		ul
+			li Satu board khusus untuk Backlog yang terdiri dari "Ideas", "Requirement Gathering", "Ready for Estimating" dan "Sprint Candidates" list
+			li Satu Board khusus untuk Sprint yang terdiri dari "Sprint Backlog", "In Progress", "QA Bug Report",  "Ready for QA", "Ready for Release" dan "Done".
+	
+	section
+		h2.bullet Backlog Board
+		ul
+			li Product Owner, bertanggung jawab penuh untuk memberi priotisasi di setiap card.
+			li "Ideas" hanyalah list berisi ide yang masih abstrak.
+			li "Requirement Gathering" berisi user story yang sedang dibentuk.
+			li "Ready for Estimating" berisi user story yang sudah dibentuk dan siap diestimasi dan diberi priotisasi.
+			li "Sprint Candidates" berisi user story yang siap dipindahkan ke Spring Board
+
+	section
+		h2.bullet Sprint Board
+		ul
+			li "Sprint Backlog" berisikan User Story yang berasal dari Backlog board. Diurut berdasar prioritas.
+			li "In Progress" berisikan User Story yang sedang dikembangkan oleh Development Team.
+			li "QA bug report" berisikan user story yang masih terdapat bug. Dipindahkan oleh Tester.
+			li "Ready for QA" berisikan user story yang selesai dikembangkan dan siap untuk dites oleh Tester.
+			li "Ready for Release" berisikan user story yang sudah diuji oleh Tester dan siap untuk direlease.
+			li "Done" berisikan user story yang sudah dirilis.
+
+	section
+		h1 Bug Tracking
+
+	section
+		h2 Bug?
+		blockquote.
+			A software bug is an error, flaw, failure, or fault in a computer program 
+			or system that causes it to produce an incorrect or unexpected result, or 
+			to <b>behave in unintended ways</b>.
+			<small>Wikipedia</small>
+
+	section
+		h2.bullet Bug Tracking?
+		hr
+		ul
+			li Dalam tahap testing maupun maintenance, seringkali kita menemukan bug
+			li Kesalahan dan perbaikannya perlu dicatat agar kesalahan tidak terjadi dua kali
+			li Untuk mencatat digunakan software "Bug Tracking"
+			li Contoh software bug tracking populer: <a href="www.mantisbt.org">Mantis</a>, <a href="http://www.bugzilla.org/">BugZilla</a>
+			li Seringkali di-bundle bersamaan dengan sistem manajemen pengembangan (<a href="http://github.com/">github</a>, <a href="http://www.redmine.org/">redmine</a>)
+
+	section
+		h2 Proses Pelaporan Bug
+		img.big(src="images/BugTrackingFlow.png")
+
+	section
+		h2 Langkah 1: User / QA Melaporkan Bug ke Tim
+		img.big(src="images/BugTrackingFlowStep1.png")
+
+	section
+		h2 Langkah 2: Tim Menentukan Siapa yg Memperbaiki Bug
+		img.big(src="images/BugTrackingFlowStep2.png")
+
+	section
+		h2 Langkah 3: Berikan Hasil Perbaikan Bug ke User / QA
+		img.big(src="images/BugTrackingFlowStep3.png")
+
+	section
+		h2 Contoh Sistem Bug Report
+		p <a href="https://github.com/ValveSoftware/source-sdk-2013/issues">Github Bug Report</a>
+
+	section
+		h2 Menulis Bug Report yang Baik
+
+	section
+		h2.bullet Sebelum Menulis Bug Report
+		hr
+		p Pastikan terlebih dahulu:
+		ol
+			li Bug belum pernah dilaporkan (gunakan search)
+			li Software sudah versi paling baru
+
+	section
+		h2.bullet Bug Report yang Baik
+		hr
+		p Bug report yang baik memiliki komponen berikut:
+		ol
+			li Ringkasan (deskripsi) bug yang jelas
+			li Langkah reproduksi bug yang jelas
+			li Stacktrace / Error Code jika terdapat exception
+
+	section
+		h2.bullet Ringkasan Bug
+		hr
+		ul
+			li Jelaskan masalah yang muncul secara singkat
+			li Jangan berikan solusi
+			li Jangan menghakimi / menyerang tim pengembang
+
+	section
+		h2.bullet Ringkasan Bug
+		hr
+		ul
+			li Baik: "Membatalkan dialog File Copy membuat sistem berhenti bekerja"
+			li Buruk: "Software crash. Sistem tidak beres. Pengembang tidak kompeten."
+
+	section
+		h2.bullet Langkah Reproduksi Bug
+		hr
+		ol
+			li <b>Bagian paling penting</b> dari Bug Report
+			li Kalau pengembang tidak bisa mereproduksi bug, akan sulit memperbaiki bug
+			li Harus detil sedetil-detilnya
+			li Lebih baik kalau ditulis langkah demi langkah
+			li Tuliskan apa yang diharapkan terjadi, dan apa yang sebenarnya terjadi
+
+	section
+		h2.bullet Langkah Reproduksi Bug (Buruk)
+		hr
+		ol
+			li Buka Gmail pada Firefox
+			li Tampilan rusak
+
+	section
+		h2.bullet Langkah Reproduksi Bug (Baik)
+		hr
+		ol
+			li Tekan Ctrl+N untuk membuka jendela baru pada Firefox
+			li Isikan https://mail.google.com pada Address Bar dan tekan Enter
+			li Diharapkan: tampilan inbox Gmail
+			li Yang muncul: pesan kesalahan "Your browser does not support cookies (error -91)"
+
+include presentation-footer
+include main-footer

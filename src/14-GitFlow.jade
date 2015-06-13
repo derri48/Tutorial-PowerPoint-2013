@@ -1,0 +1,154 @@
+- var pageTitle = 'Gitflow Workflow'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Gitflow Workflow 
+		p Teknik Kolaborasi TI
+
+	section
+		h2.bullet Apa itu Workflow?
+		hr
+		ul
+			li Workflow merupakan serangkaian cara kerja yang disepakati bersama untuk mencapai tujuan tertentu.  
+			li Git Workflow adalah kesepakatan dalam tata cara penggunaan Git dalam kolaborasi.
+			li Ada banyak Workflow dalam Git baik yang <a href="http://git-scm.com/book/en/Distributed-Git-Distributed-Workflows">terdokumentasi</a>ataupun tidak. 
+
+	section
+		h2.bullet Gitflow Workflow
+		hr
+		img(src="images/GitflowWorkflow.png")
+		ul
+			li <a href="http://nvie.com/posts/a-successful-git-branching-model/">Gitflow</a> merupakan salah satu Workflow yang terdapat dalam Git.
+			li Gitflow merupakan workflow central repository (satu repository yang berfungsi sebagai pusat komunikasi antara semua developer).
+			li Jika menggunakan SourceTree maka Gitflow merupakan salah satu fitur didalamnya.
+
+	section
+		h2.bullet Cabang Sejarah
+		img(src="images/GitFlowHistoricalBranches.png")
+		hr
+		ul
+			li GitFlow menggunakan dua cabang sebagai cabang sejarah yaitu cabang master dan develop.
+			li Master merupakan cabang untuk sejarah rilis ofisial.
+			li Umumnya setiap commit baru di Master diberi Tag versi.
+			li Develop merupakan cabang untuk integrasi terhadap fitur-fitur.
+
+	section
+		h2.bullet Cabang Fitur
+		img(src="images/GitflowFeatureBranches.png")
+		hr
+		ul
+			li Cabang fitur dibuat setiap kali ada fitur baru.
+			li Cabang fitur dipecah dari cabang develop dan digabungkan kembali ke develop apabila sudah selesai.
+			li Cabang fitur tidak boleh berhubungan dengan cabang master.
+			li Setiap fitur baru memiliki satu cabang sendiri.
+
+	section
+		h2.bullet Cabang Rilis
+		img(src="images/GitflowReleaseBranches.png")
+		hr
+		ul
+			li Ketika cabang develop sudah memiliki banyak fitur maka cabang rilis akan dipecah dari cabang develop.
+			li Dalam cabang develop hanya berisikan pembuatan dokumentasi, bug fixes, dan hal-hal lain untuk persiapan rilis.
+			li Ketika sudah siap dirilis, cabang rilis akan digabungkan ke cabang master dan develop dan diberi tag versi.
+
+	section
+		h2.bullet Cabang Perbaikan
+		img(src="images/GitflowMaintenanceBranches.png")
+		hr
+		ul
+			li Cabang perbaikan (hotfix) digunakan secara cepat memperbaiki bug yang krusial di cabang master.
+			li Cabang perbaikan dipecah dari cabang master dan digabungkan setelah selesai ke cabang master kembali.
+			li Umumnya versi minor dari master akan bertambah setelah ada gabungan dari cabang perbaikan.
+
+	section
+		h2.bullet Contoh GitFlow Workflow
+		h3 Sebelum memulai buat cabang develop dari cabang master.
+		code.language-bash
+			pre.
+				$ git checkout develop
+		h3 Kemudian push ke origin
+		code.language-bash
+			pre.
+				$ git push -u origin develop
+
+	section
+		h2.bullet Tim Cloning
+		h3 Semua anggota tim cloning dari repositori pusat tersebut.
+		code.language-bash
+			pre.
+				$ git clone ssh://user@host/path/to/repo.git
+		h3 Kemudian membuat cabang develop dari origin.
+		code.language-bash
+			pre.
+				$ git checkout -b develop origin/develop
+
+	section
+		h2.bullet Contoh kasus Fitur baru
+		h3 Ketika membuat fitur baru buat cabang baru dari develop dan beri nama cabang sesuai nama fiturnya
+		code.language-bash
+			pre.
+				$ git checkout -b fitur-A develop		
+		h3 Setelah itu coding, dan commit.
+
+	section
+		h2.bullet Ketika fitur selesai
+		h3 Setelah selesai fitur digabungkan kembali ke develop dan dihapus.
+		code.language-bash
+			pre.
+				$ git pull origin develop
+				$ git checkout develop
+				$ git merge some-feature
+				$ git push origin develop
+				$ git branch -d some-feature		
+
+	section
+		h2.bullet Mempersiapkan rilis
+		h3 Setelah sebuah cabang develop telah berisikan banyak fitur saatnya mempersiapkan rilis
+		h3 Buat cabang rilis baru dan perbaiki bug, dokumentasi, testing dan lainnya yang berhubungan dengan rilis.
+		code.language-bash
+			pre.
+				$ git checkout -b release-0.1 develop
+
+	section
+		h2.bullet Membuat rilis
+		h3 Setelah persiapan rilis selesai, cabang rilis digabungkan ke cabang master dan develop kemudian dihapus.
+		code.language-bash
+			pre.
+				$ git checkout master
+				$ git merge release-0.1
+				$ git push
+				$ git checkout develop
+				$ git merge release-0.1
+				$ git push
+				$ git branch -d release-0.1		
+
+	section
+		h2.bullet Berikan tag versi baru di master
+		h3 Setiap kali menggabungkan cabang rilis ke master, maka master diberi tag versi baru.
+		code.language-bash
+			pre.
+				$ git tag -a 0.1 -m "Initial public release" master
+				$ git push --tags
+
+	section
+		h2.bullet Penemuan bug setelah rilis
+		h3 Setelah rilis apabila ditemukan bug maka harus diperbaiki di cabang perbaikan.
+		h3 Buat cabang perbaikan dari master dan perbaiki, setelah itu gabungkan ke master dan develop serta dihapus.
+		code.language-bash
+			pre.
+				$ git checkout -b issue-#001 master
+				# Fix the bug
+				$ git checkout master
+				$ git merge issue-#001
+				$ git push
+				$ git checkout develop
+				$ git merge issue-#001
+				$ git push
+				$ git branch -d issue-#001
+
+include presentation-footer
+include main-footer

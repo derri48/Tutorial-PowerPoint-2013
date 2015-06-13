@@ -1,0 +1,380 @@
+- var pageTitle = 'Time Machine'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Time Machine
+		h2 Berkelana Menelusuri Ruang Waktu
+		p Teknik Kolaborasi TI
+
+	section
+		h2.bullet Kembali ke Waktu Lampau
+		hr
+		ul
+			li Kadang-kadang kita perlu mengembalikan atau melihat kode versi lama
+			li Mungkin ingin melihat satu file saja (contoh: method yang sudah dihapus dulu)
+			li Atau bisa juga ingin melihat banyak file (contoh: fitur yang tidak jadi ditambahkan)
+
+	section
+		h2.bullet Fitur Mesin Waktu Git
+		hr
+		ul
+			li Fitur utama: mengembalikan kode ke commit lama, membatalkan commit, membersihkan staging area
+			li <strong>Peringatan:</strong> penggunaan beberapa fitur mesin waktu berbahaya karena perubahan tidak dapat dikembalikan
+
+	section
+		h2.bullet Penelusuran Commit Lama
+		code.language-bash
+			pre.
+				$ git checkout <commit> <file>
+		p Catatan:
+		ol
+			li <code class="inline language-bash">&lt;commit&gt;</code> diisi nomor commit. 6 karakter pertama saja.
+			li <code class="inline language-bash">&lt;file&gt;</code> diisi file yang ingin dilihat pada commit di atas. Opsional.
+			li Perintah ini juga digunakan untuk percabangan (pembahasan dua minggu depan)
+
+	section
+		h2.bullet Perintah Git Checkout
+		hr
+		ul
+			li Memeriksa versi lain dari kode dari tiga sisi, yaitu: file, commit, dan cabang.
+			li Untuk hari ini kita hanya akan berfokus pada dua sisi: file dan commit.
+			li Versi lain dari commit akan mengganti isi seluruh direktori menjadi commit tersebut.
+			li Versi lain file hanya mengubah file yang relevan saja.
+
+	section
+		h2 Sebelum checkout...
+		p Harus mengetahui commit mana yang ingin dikunjungi terlebih dahulu
+		img(src="images/GitCheckoutCommitValue.png")
+
+	section
+		h2 Mari coba checkout untuk commit:
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$ git checkout e5259e0
+				Note: checking out 'e5259e0'.
+
+				# pesan panjang...
+
+				HEAD is now at e5259e0... tweak styles
+
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill ((e5259e0...))
+				$
+
+	section
+		h2.bullet Commit Checkout Notes
+		hr
+		ol
+			li <code class="inline language-bash">(master)</code> menjadi <code class="inline language-bash">((e5259e0...))</code>
+			li File yang ada di direktori utama sekarang adalah file pada versi pada commit <code class="inline language-bash">e5259e0...</code>
+			li Kita bebas melakukan kompilasi, test, hapus, diff, dkk pada file ini
+			li Segala perubahan yang dilakukan <strong>tidak akan tersimpan</strong>
+
+	section
+		h2 Kembali ke Master
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill ((e5259e0...))
+				$ git checkout master
+				Previous HEAD position was e5259e0... tweak styles
+				Switched to branch 'master'
+
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$
+
+	section
+		h2 Mari coba checkout untuk file:
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$ git checkout e5259e0 package.json
+
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$
+
+	section
+		h2.bullet File Checkout Notes
+		hr
+		ol
+			li Berbeda dengan checkout pada commit, di sini hanya 1 file yang berubah
+			li Perubahan file tersebut <strong>dapat tersimpan dalam git</strong> (coba jalankan <code class="inline language-bash">git status</code>)
+
+	section
+		h2 Kembali ke File Terbaru
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$ git checkout HEAD package.json
+
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$
+
+	section
+		h2.bullet Mengubah Sejarah
+		hr
+		ul
+			li Git Checkout hanya memungkinkan kita untuk melihat isi kode lama
+			li Terkadang, kita ingin mengubah sejarah kode (mis: ada bug parah di kode baru)
+			li Untuk mengembalikan kode ke versi lama dan mengubah sejarahnya, kita dapat menggunakan Git Revert
+
+	section
+		h2.bullet Git Revert
+		p Perintah:
+		code.language-bash
+			pre.
+				$ git revert <commit>
+		ol
+			li Revert akan membuat commit baru secara otomatis
+			li Ketika melakukan revert, sejarah kode tidak akan hilang
+			li Karenanya, operasi ini bisa dikatakan "aman" karena perubahan tercatat dalam sejarah
+
+	section
+		h2 Contoh Penggunaan Revert (1)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$ git log --oneline -2
+				7c1182f allow local sauce testing
+				b3a1f69 Update travis encrypted variables
+
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$ git revert b3a1f69
+				[master 7fa56ce] Revert "Update travis encrypted variables"
+				1 file changed, 2 insertions(+), 2 deletions(-)
+
+	section
+		h2 Contoh Penggunaan Revert (2)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$ git log --oneline -3
+				7fa56ce Revert "Update travis encrypted variables"
+				7c1182f allow local sauce testing
+				b3a1f69 Update travis encrypted variables
+
+				bert@FEBRONIA ~/Desktop/projects/mikroskil/quill (master)
+				$
+
+	section
+		h2 Ilustrasi Proses Revert
+		img(src="images/GitRevertIllustration.png")
+
+	section
+		h2.bullet Menghapus Sejarah
+		hr
+		ul
+			li Terkadang mengubah sejarah saja tidak cukup
+			li Perintah utama: Git Reset
+
+	section
+		h2.bullet Git Reset
+		p Perintah:
+		code.language-bash
+			pre.
+				$ git reset <option> <file>
+		ol
+			li Secara sederhana sama dengan Checkout, tapi perubahan data dicatat
+			li Seperti Checkout, Reset memiliki banyak konfigurasi
+			li Bisa digunakan untuk: membersihkan staging area, menghapus sejarah
+			li Gunakan hanya untuk repository lokal. Ingat bahwa sejarah <strong>terhapus selamanya</strong>
+
+	section
+		h2 Fungsi Git Reset 1
+		p Membuang <strong>satu</strong> file dari staging area:
+		code.language-bash
+			pre.
+				$ git reset <file>
+
+	section
+		h2 Fungsi Git Reset 1 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				#   keterangan file staging..
+				#
+				#       modified:   FAQs.md
+				#       modified:   kode.txt
+				#
+
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git reset FAQs.md
+				Unstaged changes after reset:
+				M       FAQs.md
+
+	section
+		h2 Fungsi Git Reset 1 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				# Keterangan file staging...
+				#
+				#       modified:   kode.txt
+				#
+				# Keterangan file non-staging...
+				#
+				#       modified:   FAQs.md
+				#
+
+	section
+		h2 Fungsi Git Reset 2
+		p Membuang <strong>semua</strong> file dari staging area:
+		code.language-bash
+			pre.
+				$ git reset
+
+	section
+		h2 Fungsi Git Reset 2 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				# Keterangan file staging...
+				#
+				#       modified:   FAQs.md
+				#       modified:   kode.txt
+				#
+
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git reset
+				Unstaged changes after reset:
+				M       FAQs.md
+				M       kode.txt
+
+	section
+		h2 Fungsi Git Reset 2 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				# On branch master
+				# Changes not staged for commit:
+				#   (use "git add <file>..." to update what will be committed)
+				#   (use "git checkout -- <file>..." to discard changes in working directory)
+				#
+				#       modified:   FAQs.md
+				#       modified:   kode.txt
+				#
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+	section
+		h2.bullet Fungsi Git Reset 3
+		p Membuang <strong>semua</strong> file dari staging area dan mengembalikan isi file ke commit sebelumnya:
+		code.language-bash
+			pre.
+				$ git reset --hard
+		ol
+			li Seluruh perubahan file yang belum di-commit <strong>akan hilang</strong>
+			li Gunakan dengan sangat hati-hati, karena isi file tidak dapat dikembalikan lagi
+
+	section
+		h2 Fungsi Git Reset 3 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				# Keterangan file staging...
+				#
+				#       modified:   FAQs.md
+				#       modified:   kode.txt
+				#
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git reset --hard
+				HEAD is now at f4c1204 Tambah 1 line
+
+	section
+		h2 Fungsi Git Reset 3 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				# On branch master
+				nothing to commit, working directory clean
+
+	section
+		h2.bullet Fungsi Git Reset 4
+		p Mengembalikan kode ke &lt;commit&gt;, tanpa menghapus file di staging:
+		code.language-bash
+			pre.
+				$ git reset <commit>
+		ol
+			li Biasanya digunakan untuk merapikan sejarah
+			li Misal: beberapa commit eksperimen yang tidak ingin dimasukkan ke sejarah
+			li Bisa juga menggunakan branch (pembahasan dua minggu depan)
+
+	section
+		h2 Fungsi Git Reset 4 (cont.)
+		p Asumsikan kita mengubah FAQs.md dan kode.txt:
+		code.language-bash
+			pre.
+				$ git reset 946981
+				Unstaged changes after reset:
+				M       FAQs.md
+				M       kode.txt
+
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				# Keterangan Unstaged...
+				#
+				#       modified:   FAQs.md
+				#       modified:   kode.txt
+				#
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+	section
+		h2.bullet Fungsi Git Reset 5
+		p Mengembalikan kode ke &lt;commit&gt; dan menghapus file di staging:
+		code.language-bash
+			pre.
+				$ git reset --hard <commit>
+		ol
+			li Perintah akan menghapus seluruh data, baik di staging maupun commit.
+			li Guankan dengan <strong>sangat hati-hati</strong>.
+
+	section
+		h2 Fungsi Git Reset 5 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git log --oneline -2
+				946981a Jadi apa
+				3894f43 kode.txt
+
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				# Keterangan Unstaged...
+				#
+				#       modified:   FAQs.md
+				#       modified:   kode.txt
+				#
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+	section
+		h2 Fungsi Git Reset 5 (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git reset --hard 3894f43
+				HEAD is now at 3894f43 kode.txt
+
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git status
+				# On branch master
+				nothing to commit, working directory clean
+
+				bert@FEBRONIA ~/Desktop/code/tibk (master)
+				$ git log --oneline -2
+				3894f43 kode.txt
+				f97fe05 git ignore
+
+	section
+		h2 Pertanyaan?
+
+include presentation-footer
+include main-footer

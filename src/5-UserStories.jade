@@ -1,0 +1,167 @@
+- var pageTitle = 'User Stories'
+
+include presentation-header
+
+include menu
+
+article#presentation
+
+	section
+		h1 User Stories
+		p Teknologi Kolaborasi Pengembangan Perangkat Lunak
+
+	section
+		h2.bullet Tujuan Pembelajaran
+		hr
+		ul
+			li Mempelajari cara menulis User Stories yang baik
+			li Menyusun BackLog dengan User Stories
+			li Menghubungkan User Stories dengan SCRUM
+
+	section
+		h2.bullet Apa itu User Stories?
+		ul
+			li User Stories merupakan sebuah cara pengumpulan kebutuhan user.
+			li User Stories menggambarkan fungsionalitas dari sebuah sistem/perangkat lunak.
+			li User Stories bisa menjadi tool testing untuk menentukan selesainya sebuah story.
+
+	section
+		h2.bullet Tiga aspek penting User Stories
+		ul
+			li Sebuah deskripsi tertulis yang digunakan untuk perencanaan dan pengingat.
+			li Komunikasi mengenai cerita yang berfungsi untuk menerangkan detil dari cerita tersebut.
+			li Uji coba yang menjelaskan dan mendokumentasikan detil dan bisa digunakan untuk menentukan sebuah cerita telah selesai atau tidak.
+
+	section
+		h2.bullet Contoh User Story
+		hr
+		card.
+			Seorang User bisa posting resumenya ke website
+		hr
+		card.
+			Seorang User bisa hapus resumenya dari website
+
+	section
+		h2.bullet Contoh Pengujian User Story
+		h3.bullet Biasanya pengujian ditulis di belakang kartu cerita yang bersangkutan.
+		hr
+		card.
+			Uji dengan deskripsi kerja yang kosong
+		hr
+		card.
+			Uji dengan deskripsi kerja yang sangat panjang
+		hr
+		card.
+			Uji dengan gaji yang kosong
+		hr
+		card.
+			Uji dengan gaji 6 digit
+
+	section
+		h1.bullet Menulis cerita
+
+	section
+		h2.bullet Cerita yang bagus
+		hr
+		ul
+			li Independen
+			li Bisa dinegosiasi
+			li Berharga untuk kustomer
+			li Bisa diestimasi
+			li Kecil
+			li Bisa diuji
+
+	section
+		h2.bullet Independen
+		hr
+		ul
+			li Sebisa mungkin hilangkan depedensi antar cerita.
+			li Depedensi bisa menyebabkan masalah prioritisasi dan perencanaan.
+			li Depedensi menyebabkan cerita susah untuk diestimasi.
+	
+	section
+		h2.bullet Contoh User Story yang tidak independen
+		hr
+		card.
+			Perusahaan bisa membayar postingan kerja dengan Visa Card. 
+		hr
+		card.
+			Perusahaan bisa membayar postingan kerja dengan MasterCard.
+		hr
+		card.
+			Perusahaan bisa membayar postingan kerja dengan American Express Card.
+		hr
+
+	section
+		h2.bullet Bisa dinegosiasi
+		hr
+		ul
+			li Deskripsi dari cerita hanyalah sebuah deskripsi besar.
+			li Detil dari deskripsi haruslah bisa dinegosiasi.
+			li Tetapi jika ada detil yang penting, maka itu harus dituliskan langsung.
+		hr
+		card.
+			Sebuah perusahaan bisa membayar postingan kerja dengan kartu kredit.
+
+			Cttn: Menerima visa, mastercard, dan american express.
+
+	section
+		h2.bullet Berharga untuk kustomer
+		h3.bullet Gunakan bahasa yang familiar dengan kustomer.
+		hr
+		card.
+			Semua koneksi ke database haruslah melalui connection pool
+
+			Tidak dipahami user
+		hr
+		card.
+			Sebanyak 50 user harus bisa menggunakan aplikasi secara bersamaan.
+
+			Dipahami oleh user
+
+	section
+		h2.bullet Bisa Diestimasi
+		h3.bullet Tiga alasan sebuah cerita susah diestimasi
+		ol
+			li Programmer tidak memiliki pengetahuan akan bidang tersebut.
+			li Programmer kurang memiliki pengetahuan teknis.
+			li Cerita tersebut terlalu besar.
+		h3.bullet Solusi adalah:
+		ol
+			li Diskusikan dengan kustomer.
+			li Buat satu cerita "spike" untuk menjelajahi masalah teknis.
+			li Pecah cerita tersebut.
+
+	section
+		h2.bullet Kecil
+		hr
+		ul
+			li Cerita yang besar umumnya terbagi atas cerita gabungan atau cerita kompleks
+			li Cerita gabungan adalah cerita yang sebenarnya bisa dibagi-bagi menjadi lebih kecil
+			li Cerita kompleks adalah cerita yang terlalu kompleks dan besar untuk dibagi lagi.
+	
+	section
+		h2.bullet Contoh Cerita Besar
+		card.
+			User bisa menghitung laba rugi
+
+			Cerita gabungan karena bisa dibagi menjadi cerita lebih kecil
+		hr
+		card.
+			User bisa melakukan transaksi dengan banking secara real time
+
+			Cerita kompleks karena prosesnya sangat kompleks dan susah untuk dibagi.
+	
+	section
+		h2.bullet Bisa diuji
+		ul
+			li Cerita harus bisa diuji dan dibuktikan sudah selesai
+			li Cerita yang tidak bisa diuji maka tidak bisa dinyatakan selesai.
+		hr
+		card.
+			Aplikasi harus user friendly
+
+			Tidak bisa diuji
+
+include presentation-footer
+include main-footer

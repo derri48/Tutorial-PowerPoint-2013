@@ -1,0 +1,262 @@
+- var pageTitle = 'Commit'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Commit
+		h2 Bekerja dengan Repository Lokal
+		p Teknik Kolaborasi TI
+
+	section
+		h2 Installasi GIT
+		p GIT bisa diunduh melalui http://git-scm.com
+
+	section
+		p Sebelum mulai...
+		h2 Konfigurasi Awal Git
+
+	section
+		h2 Identitas
+		code.language-bash
+			pre.
+				git config --global user.name "Budi Anto"
+				git config --global user.email budianto@gmail.com
+
+	section
+		h2 Editor dan Diff
+		code.language-bash
+			pre.
+				git config --global core.editor vim
+				git config --global merge.tool vimdiff
+		ul.bullet
+			li Pastikan vim maupun vimdiff dapat dijalankan langsung melalui command line. (<a href="http://www.java.com/en/download/help/path.xml">Tutorial</a>)
+			li Anda dapat menggunakan editor dan merge tool apapun, selama editor tersebut dapat dijalankan langsung melalui command line.
+
+	section
+		h2 Cek Konfigurasi
+		code.language-bash
+			pre.
+				$ git config --list
+				user.email=bertzzie@gmail.com
+				user.name=Alex Xandra Albert Sim
+				merge.tool=kdiff3
+				...
+		p atau untuk cek 1 nilai saja:
+		code.language-bash
+			pre.
+				$ git config user.name
+				Alex Xandra Albert Sim
+
+
+	section
+		h2 Membuat Repository Baru
+		code.language-bash
+			pre.
+				git init
+
+	section
+		h2 Contoh Eksekusi
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/code/repository
+				$ git init
+				Initialized empty Git repository in c:/Users/bert/Desktop/code/repository/.git/
+
+				bert@FEBRONIA ~/code/repository (master)
+				$
+
+		h3.bullet Perhatikan:
+		ul
+			li Penambahan <strong>(master)</strong> di akhir path.
+			li Penambahan direktori tersembunyi <strong>.git</strong>
+
+	section
+		h2 Repository Git (.git)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/code/repository (master)
+				$ ls -a
+				.  ..  .git
+
+	section
+		h2.bullet Repository Git (.git)
+		hr
+		ul
+			li Menyimpan seluruh data yang diperlukan oleh git.
+			li Kalau dihapus, maka repository <strong>hilang</strong>.
+			li Detail baca di <a href="http://git-scm.com/book/en/Git-Internals">Git Internal</a>
+
+	section
+		h2 Menyimpan Perubahan pada Repository
+		p File, File, File!
+
+	section
+		h2.bullet Dua Jenis File dalam Repository
+		hr
+		ul
+			li Tracked, memiliki tiga status: unmodified, modified, staged
+			li Untracked
+
+	section
+		h2 Alur Hidup File pada Repository Git
+		img(src="images/GitFileLifecycle.png")
+
+	section
+		h2 Pengecekan Status File dalam Repository
+		code.language-bash
+			pre.
+				git status
+
+	section
+		h2 Jika Tidak Ada Perubahan dalam Repository
+		code.language-bash
+			pre.
+				$ git status
+				# On branch master
+				#
+				# Initial commit
+				#
+				nothing to commit (create/copy files and use "git add" to track)
+		p.
+			(Tidak ada perubahan bisa karena repo masih baru atau 
+			memang belum ada file yang diubah.)
+
+	section
+		h2 Jika Ada File Baru (Untracked) dalam Repository
+		code.language-bash
+			pre.
+				$ git status
+				# On branch master
+				#
+				# Initial commit
+				#
+				# Untracked files:
+				#   (use "git add <file>..." to include in what will be committed)
+				#
+				#       README.md
+				nothing added to commit but untracked files present (use "git add" to track)
+		p.
+			(Perhatikan bagaimana file <code class="inline">README.md</code> dimasukkan ke dalam daftar "Untracked files".)
+
+	section
+		h2 Menambahkan File Baru ke dalam Repository
+		code.language-bash
+			pre.
+				git add README.md
+		p.
+			Setelah melakukan <code class="inline">git add</code>, maka file yang awalnya
+			berstatus "untracked" akan berubah menjadi "tracked".
+
+	section
+		h2 Git Status Jika Ada File Baru (Tracked) dalam Repository
+		code.language-bash
+			pre.
+				$ git status
+				# On branch master
+				#
+				# Initial commit
+				#
+				# Changes to be committed:
+				#   (use "git rm --cached <file>..." to unstage)
+				#
+				#       new file:   README.md
+				#
+		p.
+			Perhatikan bagaimana "Untracked files" telah berubah menjadi
+			"Changes to be committed"
+
+	section
+		h2 Menyimpan Perubahan
+		code.language-bash
+			pre.
+				git commit
+
+	section
+		h2 Menyimpan Perubahan (cont.)
+		code.language-bash
+			pre.
+				$ git commit
+				[master (root-commit) 92012b0] Initial commit, readme.
+				1 file changed, 3 insertions(+)
+				create mode 100644 README.md
+		p.
+			<strong>Note:</strong> setelah menjalankan perintah, teks editor akan
+			dijalankan untuk mengisikan pesan commit. Pesan commit akan disimpan
+			sebagai catatan tambahan dalam sejarah file.
+
+	section
+		h2 Menyimpan Perubahan
+		p Jika tidak ingin menjalankan teks editor, kita juga dapat mengisikan pesan commit dengan perintah:
+		code.language-bash
+			pre.
+				$ git commit -m "Pesan commit"
+
+	section
+		h2.bullet Ikhtisar untuk Menyimpan Perubahan ke Repo (Sejauh Ini)
+		hr
+		ul
+			li <code class="inline language-bash">git status # Lihat file yang belum masuk repo</code>
+			li <code class="inline language-bash">git add "nama file"</code>
+			li <code class="inline language-bash">git status # Cek file yang masuk staging, sudah benar?</code>
+			li <code class="inline language-bash">git commit -m "Pesan commit"</code>
+
+	section
+		h2.bullet Bagaimana Jika Ada File yang Tidak Ingin Dimasukkan ke Repo Selamanya?
+		hr
+		ul
+			li Contoh file: konfigurasi server, data autentikasi, konfigurasi IDE
+			li Biasanya berupa file unik yang memiliki isi berbeda-beda untuk tiap programmer
+			li Solusinya: <code class="inline">.gitignore</code>
+
+	section
+		h2.bullet .gitignore
+		hr
+		ul
+			li Merupakan sebuah file teks standar
+			li File ini berisi pola (pattern) untuk seluruh file yang tidak akan dibaca oleh git
+			li .gitignore biasanya dibuat <strong>sebelum</strong> init pertama
+			li Kenapa sebelum init pertama? Untuk memastikan tidak ada file-file yang tidak diperlukan di dalam repo.
+
+	section
+		h2 Cara Pembuatan .gitignore
+		p Esensinya sama seperti membuat file biasa
+		code.language-bash
+			pre.
+				$ touch .gitignore
+				$ vim .gitignore
+
+	section
+		h2 Isi .gitignore
+		p Isi dari .gitignore sendiri hanya berupa daftar file atau direktori yang tidak ingin disimpan. Contohnya:
+		code.language-bash
+			pre.
+				.*
+				logs
+				project/project
+				project/target
+				tmp
+				dist
+				bin
+		p.
+			Perhatikan bagaimana <code class="inline">.*</code> menandakan semua file dengan awalan
+			"." tidak akan dimasukkan ke dalam repo. File-file dengan awalan "." seringkali digunakan
+			aplikasi sebagai file konfigurasi.
+
+	section
+		h2.bullet Rangkuman Langkah Awal Penggunaan Git
+		hr
+		ul
+			li Konfigurasi Awal (username, email, editor, merge tool)
+			li Buat file <code class="inline">.gitignore</code>
+			li Init repository
+			li <i>code, code, code</i>
+			li Commit
+
+	section
+		h2 Pertanyaan?
+
+include presentation-footer
+include main-footer

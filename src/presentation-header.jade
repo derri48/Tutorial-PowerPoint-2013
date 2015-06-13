@@ -1,0 +1,18 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    - if (typeof(pageTitle) !== 'undefined') {
+        title= 'TKPPL | ' + pageTitle
+    - } else {
+        title= 'Teknologi Kolaborasi Pengembangan Perangkat Lunak'
+    - }
+
+    //- Check out 'src/bower_components/prism/themes/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism.css')
+    link(rel='stylesheet', type='text/css', href='bower_components/todc-bootstrap-main/dist/css/bootstrap.min.css')
+
+    link(rel='stylesheet', type='text/css', href='styles/main-presentation.css')
+
+  body

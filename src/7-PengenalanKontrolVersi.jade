@@ -1,0 +1,138 @@
+- var pageTitle = 'Pengenalan Kontrol Versi'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Pengenalan Kontrol Versi
+		p Teknik Kolaborasi TI
+
+	section
+		h2 Apa itu Kontrol Versi?
+		blockquote.
+			Sistem kontrol versi adalah sebuah perangkat lunak
+			yang membantu tim pengembang perangkat lunak untuk 
+			<strong>bekerja sama</strong> dan menyimpan <strong>seluruh sejarah</strong> dari 
+			pekerjaan mereka.
+			<small>Eric Sink</small>
+
+		h3 Sederhananya:
+		blockquote.
+			Seperangkat perangkat lunak untuk membantu mencatat
+			dan menggabungkan berbagai versi <strong>data</strong>.
+
+	section
+		h2 Memang biasanya manajemen versi data seperti apa?
+		img(src="images/version-control.png")
+
+	section
+		h2 Hasilnya:
+		img(src="images/phd101212s.png")
+
+	section
+		h2 sebelum ada komputer gimana dong?
+		img(src="images/doc-vault.jpg")
+		p <a href="http://en.wikipedia.org/wiki/Archival_science">Archival Science (Ilmu Pengarsipan)</a>
+
+	section
+		h2.bullet Kontrol Versi Bisa Apa?
+		hr
+		ul
+			li Menyimpan sejarah perubahan data
+			li Manajemen Revisi (pemberian nama, penanda rilis, dst)
+			li Manajemen penggabungan cabang (?)
+
+	section
+		h2 Evolusi Kontrol Versi
+		h3 Tahap 1
+		blockquote.
+			<p>Dear all,</p>
+			<p>
+				Terlampir kode terbaru dari program yang sudah saya tambahkan fitur X.
+				Perbaikan akan bug yang ditambahkan oleh Ani juga sudah saya gabungkan.
+				Mohon untuk menggabungkan perubahan kode yang kalian lakukan sejak tanggal
+				20 - 30 Oktober 2013 (jika ada). Terima kasih.
+			</p>
+			<p>Lampiran: <b>GoldSource.Budi.30Okt2013.tar.gz</b></p>
+
+	section
+		h2 Evolusi Kontrol Versi
+		h3.bullet Tahap 2: <a href="http://basepath.com/aup/talks/SCCS-Slideshow.pdf">Source Code Control System (SCSS)</a>
+		ul
+			li File dikunci (1 file hanya bisa diedit 1 orang)
+			li Belum ada fitur jaringan
+
+	section
+		h2 Evolusi Kontrol Versi
+		h3 Tahap 3: Kontrol Versi Terpusat
+		img(src="images/centralized-model.png")
+		p Contohnya: svn, cvs
+
+	section
+		h2.bullet Ciri Khas Kontrol Versi Terpusat
+		hr
+		ul
+			li Arsitektur Client-Server
+			li Konsekuensi: harus ada server untuk dapat menggunakan sistem
+			li Terdapat satu data dan sejarah data yang "benar"
+
+	section
+		h2.bullet Catatan Penting:
+		hr
+		ul
+			li Kontrol Versi Terpusat seperti svn dan cvs <strong>masih banyak digunakan</strong> pada perusahaan besar.
+			li Tidak ada ruginya mempelajari kontrol versi jenis ini.
+			li Walaupun kalau memulai proyek baru, disarankan untuk menggunakan evolusi terakhir.
+
+	section
+		h2 Evolusi Kontrol Versi
+		h3 Tahap 3: Kontrol Versi Terdistribusi
+		img(src="images/decentralized-model.png")
+		p Contohnya: git, hg, bzr
+
+	section
+		h2.bullet Ciri Khas Kontrol Versi Terdistribusi
+		hr
+		ul
+			li Tidak ada satu data dan sejarah data yang "benar"
+			li Setiap pengguna sistem memiliki kopi keseluruhan data dan sejarahnya
+			li Tidak memerlukan server untuk menggunakan sistem
+
+	section
+		h2.bullet Implementasi Kontrol Versi
+		hr
+		ul
+			li Sebuah Software Terpisah
+			li Integrasi dengan Software Lain
+
+	section
+		h2 Kontrol Versi sebagai Software Terpisah
+		h3
+			| Contohnya: <a href="http://subversion.apache.org/">svn</a>, 
+			|		   <a href="http://mercurial.selenic.com/">hg</a>, 
+			|		   <a href="http://git-scm.com/">git</a>, 
+			|		   <a href="http://bazaar.canonical.com/en/">bzr</a>
+
+	section
+		h2 Kontrol Versi sebagai Software Terpisah
+		p Biasanya CLI, tetapi ada juga yang memiliki GUI
+		img(src="images/sourcetree.png")
+
+	section
+		h2 Kontrol Versi Terintegrasi
+		p Biasanya langsung menjadi fitur dari aplikasi
+		img(src="images/MediaWiki.png")
+		p Gambar: <a href="http://en.wikipedia.org/w/index.php?title=Revision_control&action=history">Kontrol Versi Wikipedia</a>
+
+	section
+		h3 Yang Dibahas:
+		h2 Kontrol Versi sebagai Software Terpisah
+		p Tepatnya: Git
+
+	section
+		h2 Pertanyaan?
+
+include presentation-footer
+include main-footer

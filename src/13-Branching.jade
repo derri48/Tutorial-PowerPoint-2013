@@ -1,0 +1,141 @@
+- var pageTitle = 'Branching (Percabangan)'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Percabangan (Branching)
+		p Teknik Kolaborasi TI
+
+	section
+		h2.bullet Kenapa Perlu Percabangan?
+		hr
+		ul
+			li Ketika bereksperimen kita tidak ingin "mengotori" kode utama
+			li Terjadi percabangan secara alami (e.g. mengubah kode dan commit bersamaan)
+			li Kenapa tidak menggunakan clone atau copy paste saja?
+
+	section
+		h2 Pembuatan Cabang Baru
+		code.language-bash
+			pre.
+				$ git branch <nama_cabang>
+
+	section
+		h2 Berpindah Cabang
+		code.language-bash
+			pre.
+				$ git checkout <nama_cabang>
+
+	section
+		h2 Buat Cabang Baru dan Pindah
+		p (gabungan dari dua perintah sebelumnya)
+		code.language-bash
+			pre.
+				$ git checkout -b <nama_cabang>
+
+	section
+		h2 Buat Cabang Baru dan Pindah (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git checkout -b experiment
+				Switched to a new branch 'experiment'
+
+				bert@FEBRONIA ~/Desktop/code/tib (experiment)
+				$
+
+	section
+		h2 Kembali ke Cabang Utama
+		code.language-bash
+			pre.
+				$ git checkout master
+
+	section
+		h2 Kembali ke Cabang Utama (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tib (experiment)
+				$ git checkout master
+				Switched to branch 'master'
+
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$
+
+	section
+		h1 Eksperimen!
+
+	section
+		h2.bullet Menggabungkan Dua Cabang
+		code.language-bash
+			pre.
+				$ git merge <nama_cabang>
+		ol
+			li Menggabungkan <code class="inline language-bash">&lt;nama_cabang&gt;</code> ke cabang yang sedang aktif
+			li Mencoba menyelesaikan konflik secara otomatis
+			li Jika konflik tidak dapat diselesaikan otomatis, jalankan <code class="inline language-bash">git mergetool</code>
+
+	section
+		h2.bullet Menggabungkan Dua Cabang (cont.)
+		code.language-bash
+			pre.
+				$ git mergetool
+		ul
+			li Menjalankan tool yang ditentukan pada konfigurasi git (<code class="inline language-bash">merge.tool</code>)
+
+	section
+		h2 Melihat Daftar Cabang
+		code.language-bash
+			pre.
+				$ git branch
+
+	section
+		h2 Melihat Daftar Cabang (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git branch
+				experiment
+				* master
+
+	section
+		h2 Melihat Daftar Cabang (cont.)
+		p Plus: melihat commit terakhir
+		code.language-bash
+			pre.
+				$ git branch -v
+
+	section
+		h2 Melihat Daftar Cabang (cont.)
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/mhstest/ACE (master)
+				$ git branch -v
+				* master      06985e8 [ahead 6] MERGE from MASTER OK
+				testinglagi 06985e8 MERGE from MASTER OK
+
+	section
+		h2 Melihat Daftar Cabang (cont.)
+		p Plus: melihat cabang yang sudah bergabung ke master
+		code.language-bash
+			pre.
+				$ git branch --merged
+	section
+		h2 Melihat Daftar Cabang (cont.)
+		p Plus: melihat cabang yang <strong>belum</strong> bergabung ke master
+		code.language-bash
+			pre.
+				$ git branch --no-merged
+
+	section
+		h2 Menghapus Cabang
+		code.language-bash
+			pre.
+				$ git branch -d <nama_cabang>
+
+
+
+include presentation-footer
+include main-footer

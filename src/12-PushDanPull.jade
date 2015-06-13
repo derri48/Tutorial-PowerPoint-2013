@@ -1,0 +1,252 @@
+- var pageTitle = 'Remote (Push dan Pull)'
+
+include presentation-header
+
+include menu
+
+article#presentation
+	section
+		h1 Remote (Push dan Pull)
+		h2 Bekerja dengan Server Git
+		p Teknik Kolaborasi TI
+
+	section
+		h2.bullet Remote?
+		hr
+		ul
+			li Ketika berkolaborasi, biasanya kita perlu berbagi repository dengan orang lain
+			li Repository yang berada di komputer kita dikenal dengan istilah <em>local repository</em>
+			li Repository yang berada di server (komputer lain) dikenal dengan istilah <em>remote repository</em>
+
+	section
+		h2.bullet Remote Repository
+		hr
+		ul
+			li Bisa berupa kopi repository lokal yang diletakkan di server (contoh: Github)
+			li Bisa juga berupa repository orang lain yang dibuka ke publik
+			li Tidak terdapat banyak perbedaan ketika berkolaborasi dengan dua model di atas
+			li Perbedaan hanya ada pada letak <i>remote repository</i> (di server vs komputer orang lain)
+			li Disarankan gunakan server, agar orang dapat mengakses kode kapanpun di manapun
+
+	section
+		h2.bullet <a href="https://github.com">Github</a>
+		hr
+		ul
+			li Layanan <i>hosting</i> repository git
+			li Bukan hanya membantu menyimpan kode, tapi juga kolaborasi
+			li Langsung ke <a href="https://github.com">github.com</a> untuk daftar
+
+	section
+		h2 Membuat Repository Baru di Github
+		img(src="images/GithubNewRepo.PNG")
+
+	section
+		h2 Alamat Repository Baru Github
+		img(src="images/GitNewRepoURL.PNG")
+
+	section
+		h2.bullet Menghubungkan Repository Lokal dengan Remote
+		p Perintah utama:
+		code.language-bash
+			pre.
+				$ git remote add <nama> <alamat>
+		ol
+			li Isikan <code class="inline language-bash">&lt;nama&gt;</code> dengan nama repository remote yang diinginkan
+			li Nama remote utama biasanya "origin"
+			li "origin" juga nama remote yang diberi git ketika melakukan clone repository lain
+			li Isikan <code class="inline language-bash">&lt;alamat&gt;</code> dengan alamat repository remote
+			li 1 repository boleh punya banyak remote
+
+	section
+		h2.bullet Melihat Daftar Repository Remove
+		code.language-bash
+			pre.
+				$ git remote
+		ol
+			li Tambahkan parameter <code class="inline language-bash">-v</code> untuk melihat detil
+
+	section
+		h2 Contoh Penggunaan Penambahan dan Daftar Repo Remote
+		code.language-bash
+			pre.
+				# Belum ada remote
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git remote
+
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git remote -v
+
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git remote add origin git@github.com:bertzzie/belajar-git.git
+
+	section
+		h2 Contoh Penggunaan Penambahan dan Daftar Repo Remote (cont.)
+		code.language-bash
+			pre.
+				#remote ditambahkan
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git remote
+				origin
+
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git remote -v
+				origin  git@github.com:bertzzie/belajar-git.git (fetch)
+				origin  git@github.com:bertzzie/belajar-git.git (push)
+
+	section
+		h2.bullet Mengirimkan Data Repository ke Remote
+		p Perintah utama:
+		code.language-bash
+			pre.
+				$ git push <nama-remote> <nama-cabang>
+		ol
+			li Jika remote menggunakan protokol https, bisa langsung mengirimkan data
+			li Jika remote menggunakan protokol git, kita harus melakukan setup ssh dahulu
+			li Ketika pertama kali push ke repo baru, gunakan opsi -u
+			li Opsi -u: memberitahukan ke git bahwa ini adalah repo pusat (tempat orang berkontribusi)
+			li Tanpa -u, pengguna repo lain tidak dapat langsung melakukan push / pull setelah clone
+
+	section
+		h2 HTTPS / SSH?
+		img(src="images/HTTPSOrSSH.PNG")
+
+	section
+		h2 HTTPS / SSH? (cont.)
+		code.language-bash
+			pre.
+				# SSH
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git remote -v
+				origin  git@github.com:bertzzie/belajar-git.git (fetch)
+				origin  git@github.com:bertzzie/belajar-git.git (push)
+
+				# HTTPS
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git remote -v
+				origin  https://github.com/bertzzie/belajar-git.git (fetch)
+				origin  https://github.com/bertzzie/belajar-git.git (push)
+
+	section
+		h2.bullet HTTPS / SSH? (cont.)
+		hr
+		ul
+			li Disarankan untuk menggunakan https untuk memudahkan
+			li Kalau ingin pakai SSH, perlu membuat private dan public key dahulu (<a href="https://help.github.com/articles/generating-ssh-keys">tutorial</a>)
+			li Kekurangan https: harus memasukkan username dan password github setiap kali ingin push
+			li Kekurangan ssh: perlu setup tambahan sebelum bisa push
+
+	section
+		h2 Contoh Penggunaan Git Push
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/tib (master)
+				$ git push -u origin master
+				Username for 'https://github.com': bertzzie
+				Password for 'https://bertzzie@github.com':
+				Counting objects: 22, done.
+				Delta compression using up to 4 threads.
+				Compressing objects: 100% (19/19), done.
+				Writing objects: 100% (22/22), 2.00 KiB | 0 bytes/s, done.
+				Total 22 (delta 5), reused 0 (delta 0)
+				To https://github.com/bertzzie/belajar-git.git
+				* [new branch]      master -> master
+				Branch master set up to track remote branch master from origin.
+
+	section
+		h2.bullet Mengambil Data dari Remote
+		p Perintah utama:
+		code.language-bash
+			pre.
+				$ git fetch <nama-remote>
+		ol
+			li Mengambil data terbaru dari remote
+			li Jika terjadi konflik, selesaikan secara manual
+			li Kalau ingin penyelesaian konflik otomatis, gunakan perintah pull
+
+	section
+		h2.bullet Mengambil Data dari Remote (cont.)
+		p Untuk menyelesaikan konflik otomatis:
+		code.language-bash
+			pre.
+				$ git pull <nama-remote>
+		ul
+			li Karena terdapat fitur otomatis, biasanya kita lebih banyak menggunakan perintah ini
+
+	section
+		h2 Contoh Penggunaan Git Pull
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/projects/libgit2 (master)
+				$ git pull origin
+				Enter passphrase for key '/c/Users/bert/.ssh/id_rsa':
+				remote: Counting objects: 7122, done.
+				remote: Compressing objects: 100% (2404/2404), done.
+				remote: Total 6357 (delta 4488), reused 5667 (delta 3816)
+				Receiving objects: 100% (6357/6357), 2.05 MiB | 50.00 KiB/s, done.
+				Resolving deltas: 100% (4488/4488), completed with 472 local objects.
+				# data perubahan...
+
+	section
+		h2 Bagaimana Jika Belum Ada Repo Lokal?
+		p Untuk pertama kali mengambil repo lokal, push tidak dapat digunakan. Gunakan clone:
+		code.language-bash
+			pre.
+				$ git clone <alamat-remote>
+
+	section
+		h2 Contoh Penggunaan Clone
+		code.language-bash
+			pre.
+				bert@FEBRONIA ~/Desktop/code/aa
+				$ git clone git@github.com:bertzzie/belajar-git.git
+				Cloning into 'belajar-git'...
+				Enter passphrase for key '/c/Users/bert/.ssh/id_rsa':
+				remote: Counting objects: 22, done.
+				remote: Compressing objects: 100% (14/14), done.
+				remote: Total 22 (delta 5), reused 22 (delta 5)
+				Receiving objects: 100% (22/22), done.
+				Resolving deltas: 100% (5/5), done.
+
+	section
+		h2 Rangkuman Alur Kerja Git(Hub)
+		p Sesuaikan dengan alur kerja git:
+		img.big(src="images/GitFlowAlternate.png")
+
+	section
+		h2.bullet Rangkuman Alur Kerja Git(Hub)
+		p Untuk kode baru:
+		ol
+			li Buat repository baru di github
+			li Buat repository baru di lokal
+			li Kerja di repository lokal
+			li Push dengan opsi -u ke github
+
+	section
+		h2.bullet Rangkuman Alur Kerja Git(Hub)
+		p Untuk kode yang sudah ada:
+		ol
+			li Clone / Pull dari Github
+			li Kerja di repository lokal
+			li Sebelum push, pull kembali untuk memastikan kode sudah yang terbaru
+			li Push data repositori terbaru ke github
+
+	section
+		h2 Perintah Tambahan Remote: Mengganti Nama Remote
+		code.language-bash
+			pre.
+				$ git remote rename <nama-lama> <nama-baru>
+
+	section
+		h2 Perintah Tambahan Remote: Menghapus Remote
+		code.language-bash
+			pre.
+				$ git remote rm <nama-remote>
+
+	section
+		h2 Perintah Tambahan Remote: Melihat Detil Remote
+		code.language-bash
+			pre.
+				$ git remote show <nama-remote>
+
+include presentation-footer
+include main-footer

@@ -1,0 +1,203 @@
+- var pageTitle = 'SCRUM'
+
+include presentation-header
+
+include menu
+
+article#presentation
+
+	section
+		h1 SCRUM
+		p Teknologi Kolaborasi Pengembangan Perangkat Lunak
+
+	section
+		h2.bullet SCRUM sebagai Metodologi Pengembangan
+		hr
+		ul
+			li karena metodologi pengembangan klasik (waterfall) gagal
+
+	section
+		h2.bullet Tentang SCRUM
+		hr
+		ol
+			li sebuah proses pengembangan yang terfokus dalam menghasilkan produk bernilai tinggi secepat mungkin.
+			li memungkinkan kita untuk dapat selalu melihat hasil pengembangan.
+			li pengembangan dilakukan dengan sistem prioritas yang ditentukan oleh pengguna sistem.
+
+	section
+		h2.bullet Karakteristik SCRUM
+		hr
+		ul
+			li Tim bergerak secara mandiri
+			li Produk dikembangkan dalam serangkaian "sprint"
+			li Kebutuhan pengguna disimpan dalam "backlog", yang merupakan daftar kebutuhan sederhana
+			li Tidak ada praktek pengembangan tertentu yang dianggap wajib berjalan
+			li Salah satu proses "Agile"
+
+	section
+		h2.bullet Agile Manifesto
+		hr
+		ul.manifesto
+			li <span class="agile-yes">Individual &amp; Interaction</span> &gt; <span class="agile-no">Process &amp; Tools</span>
+			li <span class="agile-yes">Working Software</span> &gt; <span class="agile-no">Comprehensive Documentation</span>
+			li <span class="agile-yes">Customer Collaboration</span> &gt; <span class="agile-no">Contract Negotiation</span>
+			li <span class="agile-yes">Responding to Change</span> &gt; <span class="agile-no">Following a Plan</span>
+
+	section
+		h2 Tingkat "Noise" sebuah Proyek
+		hr
+		img.big(src="images/project-noise-level.png")
+		p.
+			Sumber: Strategic Management and Organizational Dynamics 
+			oleh Ralph Stacey in Agile Software Development with Scrum 
+			oleh Ken Schwaber and Mike Beedle.
+
+	section
+		h2 Proses Perjalanan SCRUM
+		hr
+		img.big(src="images/scrum-process.png")
+
+	section
+		h2.bullet Sprint
+		hr
+		ul
+			li biasanya dijalankan selama 2-4 minggu
+			li disarankan untuk memiliki durasi konstan
+			li produk dikembangkan (dari analisis sampai testing) selama sprint
+			li <strong>tidak boleh ada perubahan kebutuhan</strong> selama sprint
+
+	section
+		h2.bullet Pemain dalam tim SCRUM
+		hr
+		ul
+			li Pemilik Produk (Product Owner)
+			li Tim Pengembang (Development Team)
+			li Scrum Master
+
+	section
+		h2.bullet Product Owner
+		hr
+		ul
+			li Mendefinisikan fitur produk
+			li Menentukan waktu rilis dan apa yang akan dirilis
+			li Bertanggung jawab dalam kebergunaan produk (materi maupun tidak)
+			li Menentukan prioritas sebuah fitur, apakah sesuai keinginan pasar atau tidak
+			li Mengganti prioritas pada tiap iterasi (jika diperlukan)
+			li Menerima atau menolak hasil kerja
+
+	section
+		h2.bullet SCRUM Master
+		hr
+		ul
+			li Memastikan SCRUM dijalankan dengan benar
+			li Melenyapkan gangguan terhadap proyek
+			li Memastikan tim dapat bekerja dengan baik dan produktif
+			li Membuka jalan kerja sama antara semua anggota tim
+			li Melindungi tim dari gangguan luar proyek
+
+	section
+		h2.bullet Development Team
+		hr
+		ul
+			li Berisi 5-9 orang
+			li Bersifat mandiri: tidak ada "peran khusus" anggota tim
+			li Usahakan tidak ada pergantian peran ketika sprint sedang berjalan
+
+	section
+		h2.bullet Kegiatan dalam SCRUM
+		hr
+		ul
+			li Perencanaan Sprint (Sprint Planning)
+			li Rapat Harian (Daily SCRUM Meeting)
+			li Ulasan Sprint (Sprint Review)
+			li Sprint Retrospective
+
+	section
+		h2.bullet Sprint Planning
+		hr
+		ul
+			li Tim menentukan untuk mengerjakan salah satu <i>item</i> dari backlog
+			li Sprint backlog dibuat
+			li Sprint backlog berisi detil pekerjaan untuk menyelesaikan product backlog
+			li Sprint backlog berisi estimasi waktu pengerjaan, sedetil mungkin
+			li Sprint backlog dikerjakan bersama-sama oleh SCRUM Master dan tim
+
+	section
+		h2.bullet Daily SCRUM
+		hr
+		ul
+			li Harian, 15 menit, sambil berdiri
+			li <strong>Bukan</strong> untuk menyelesaikan masalah
+			li Semua anggota tim ikut
+
+	section
+		h2.bullet Daily SCRUM
+		hr
+		p Semua orang wajib menjawab pertanyaan berikut:
+		ol
+			li Kemarin mengerjakan apa?
+			li Apa yang akan dikerjakan hari ini?
+			li Ada masalah dalam pengerjaan tugas?
+		p.
+			Pertanyaan ini <strong>bukan</strong> laporan ke SCRUM Master, melainkan
+			bentuk komitmen ke tim
+
+	section
+		h2.bullet Sprint Review
+		hr
+		ul
+			li tim menjelaskan apa yang dicapai selama sprint
+			li biasanya dalam bentuk demo produk
+			li informal, tanpa Power Point
+			li semua orang boleh berpartisipasi
+
+	section
+		h2.bullet Sprint Retrospective
+		hr
+		ul
+			li dilakukan di akhir sprint
+			li membahas apa yang dijalankan dengan benar dan salah selama sprint
+			li bentuk refleksi agar sprint selanjutnya lebih baik lagi
+			li diikuti oleh semua tim
+			li bahas apa yang: harus berhenti, mulai, dan tetap dilakukan selama sprint
+
+	section
+		h2.bullet Perangkat SCRUM
+		hr
+		ul
+			li Product Backlog
+			li Sprint Backlog
+			li Burntdown Chart
+
+	section
+		h2.bullet Product Backlog
+		hr
+		ul
+			li kebutuhan produk
+			li harus memberikan nilai untuk pengguna
+			li prioritas ditentukan oleh Product Owner
+			li prioritas diperbaharui setiap awal sprint
+
+	section
+		h2 Contoh Product Backlog
+		img(src="images/product-backlg.png")
+
+	section
+		h2.bullet Sprint Backlog
+		hr
+		ul
+			li detil pekerjaan untuk menyelesaikan Product Backlog
+			li tiap anggota tim menentukan sendiri apa yang mau dikerjakan
+			li estimasi waktu pengerjaan diperbaharui tiap hari
+			li boleh ditambah, ganti, ataupun hapus
+
+	section
+		h2 Contoh Sprint Backlog
+		img(src="images/sprint-backlg.png")
+
+	section
+		h2 Sprint Burntdown Chart
+		img(src="images/burntdown-chart.png")
+
+include presentation-footer
+include main-footer
